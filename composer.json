@@ -1,0 +1,25 @@
+{
+  "name": "senviet/searchterm",
+  "description": "Auto add searched keywords to your site",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Nguyễn Văn Được",
+      "email": "nvduoc@senviet.org"
+    }
+  ],
+  "license": [
+    "LGPL-2.1",
+    "GPL-3.0+"
+  ],
+  "support": {
+    "email": "nvduoc@senviet.org"
+  },
+  "autoload": {
+    "psr-4": {
+      "SearchTerm\\": "src/"
+    },
+    "classmap": ["framework/."],
+    "files"   : ["framework/load-composer.php", "framework/Util.php"]
+  }
+}
