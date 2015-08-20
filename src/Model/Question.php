@@ -12,7 +12,7 @@
 namespace WPQuizz\Model;
 
 
-class Question {
+class Question implements \JsonSerializable{
 	protected $answer;
 	protected $question;
 	protected $choices;
@@ -20,10 +20,12 @@ class Question {
 	protected $percent_correct;
 	protected $percent_incorrect;
 	protected $category;
+	protected $smartererId;
+	protected $totalResponses;
 	/**
 	 *
 	 */
-	public function __construct($answer=null,$question=null, $choices=null, $difficulty=null, $percent_correct=null, $percent_incorrect=null, $category=null){
+	public function __construct($smartererId=null, $answer=null,$question=null, $choices=null, $difficulty=null, $percent_correct=null, $percent_incorrect=null, $category=null){
 
 	}
 	/**
@@ -124,4 +126,53 @@ class Question {
 	public function setCategory( $category ) {
 		$this->category = (array)$category;
 	}
-}
+
+	/**
+	 * @return mixed
+	 */
+	public function getSmartererId() {
+		return $this->smartererId;
+	}
+
+	/**
+	 * @param mixed $smartererId
+	 */
+	public function setSmartererId( $smartererId ) {
+		$this->smartererId = $smartererId;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getTotalResponses() {
+		return $this->totalResponses;
+	}
+
+	/**
+	 * @param mixed $totalResponses
+	 */
+	public function setTotalResponses( $totalResponses ) {
+		$this->totalResponses = $totalResponses;
+	}
+
+	/**
+	 * Specify data which should be serialized to JSON
+	 *
+	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+	 * @return mixed data which can be serialized by <b>json_encode</b>,
+	 *        which is a value of any type other than a resource.
+	 * @since 5.4.0
+	 */
+	public function jsonSerialize() {
+		return array(
+			'answer'=>$this->getAnswer(),
+			'question'=>$this->getQuestion(),
+			'choices'=>$this->getChoices(),
+			'difficulty'=>$this->getDifficulty(),
+			'percent_correct'=>$this->getPercentCorrect(),
+			'percent_incorrect'=>$this->getPercentIncorrect(),
+			'category'=>$this->getCategory(),
+			'smartererId'=>$this->getSmartererId(),
+			'totalResponses'=>$this->getTotalResponses()
+		);
+}}

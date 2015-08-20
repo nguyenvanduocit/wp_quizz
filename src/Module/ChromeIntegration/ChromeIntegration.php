@@ -19,6 +19,9 @@ class ChromeIntegration extends Base {
 		 */
 		add_action( 'wp_ajax_wpq-add-question', array( $this, 'addQuestion' ) );
 		add_action( 'wp_ajax_nopriv_wpq-add-question', array( $this, 'addQuestion' ) );
+
+		add_action( 'wp_ajax_wpq-get-question', array( $this, 'getQuestion' ) );
+		add_action( 'wp_ajax_nopriv_wpq-get-question', array( $this, 'getQuestion' ) );
 	}
 
 	public function addQuestion() {
@@ -58,6 +61,24 @@ class ChromeIntegration extends Base {
 					              ) );
 				}
 			}
+		}
+	}
+	public function getQuestion(){
+		header( 'Access-Control-Allow-Origin: *' );
+		$question = $_POST['question'];
+		$question = QuestionFactory::searchByQuestion($question);
+		if ( is_wp_error( $question ) ) {
+			wp_send_json( array(
+				              'success' => FALSE,
+				              'message' => $question->get_error_message()
+			              )
+			);
+		} else {
+			wp_send_json( array(
+				              'success' => TRUE,
+				              'message' =>$question->getAnswer(),
+				              'data'    => $question
+			              ) );
 		}
 	}
 }
