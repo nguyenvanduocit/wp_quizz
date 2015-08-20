@@ -23,7 +23,7 @@ namespace WPQuizz\Admin;
 class AdminPage extends \scbAdminPage{
 	function setup() {
 		$this->args = array(
-			'page_title' => 'scb Example',
+			'page_title' => 'WP Quizz',
 		);
 	}
 

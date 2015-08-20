@@ -29,7 +29,7 @@ class WPQuizz {
 	public function __construct()
 	{
 		$this->moduleList = apply_filters('wpq_module_list', array(
-			''
+			'\WPQuizz\Module\API\API'
 		));
 	}
 
