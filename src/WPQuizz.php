@@ -22,6 +22,7 @@ use WPQuizz\Admin\Admin;
  */
 class WPQuizz {
 	protected $moduleList;
+	protected $postTypeList;
 	protected $admin;
 	/**
 	 * the construct
@@ -29,7 +30,10 @@ class WPQuizz {
 	public function __construct()
 	{
 		$this->moduleList = apply_filters('wpq_module_list', array(
-			'\WPQuizz\Module\API\API'
+			'\WPQuizz\Module\ChromeIntegration\ChromeIntegration'
+		));
+		$this->postTypeList = apply_filters('wpq_module_list', array(
+			'\WPQuizz\Posttype\Question\Question'
 		));
 	}
 
@@ -59,6 +63,24 @@ class WPQuizz {
 		if(is_admin()){
 			$this->admin = new Admin();
 			$this->admin->run();
+		}
+		foreach($this->moduleList as $moduleName){
+			if(class_exists($moduleName)){
+				/** @var \WPQuizz\Module\Base $loadedModule */
+				$loadedModule = new $moduleName();
+				$loadedModule->run();
+			}
+		}
+		add_action('init', array($this, 'registerPosttype'));
+
+	}
+	public function registerPosttype(){
+		foreach($this->postTypeList as $postTypeClassName){
+			if(class_exists($postTypeClassName)){
+				/** @var \WPQuizz\Posttype\Base $loadedClass */
+				$loadedClass = new $postTypeClassName();
+				$loadedClass->register();
+			}
 		}
 	}
 }

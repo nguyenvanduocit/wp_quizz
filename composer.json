@@ -20,6 +20,9 @@
       "WPQuizz\\": "src/"
     },
     "classmap": ["framework/."],
-    "files"   : ["framework/load-composer.php", "framework/Util.php"]
+    "files"   : ["framework/load-composer.php", "framework/Util.php", "src/CONST.php"]
+  },
+  "require": {
+    "symfony/validator": "^2.7"
   }
 }

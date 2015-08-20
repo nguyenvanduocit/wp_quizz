@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: SV Searchterms
+Plugin Name: WP Quizz
 Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
 Description: The plugin help you to auto add search term to your blog
 Version: 1.0
