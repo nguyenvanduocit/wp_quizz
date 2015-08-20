@@ -9,7 +9,7 @@
  * @author nguyenvanduocit
  */
 
-namespace SearchTerm\Admin;
+namespace WPQuizz\Admin;
 
 
 /**

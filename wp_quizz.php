@@ -8,13 +8,13 @@ Author: nguyenvanduocit
 Author URI: http://nvduoc.senviet.org
 License: LGPL-2.1, GPL-3.0+
 */
-define('ST_FILE', __FILE__);
-define('ST_DIR', __DIR__);
-define('ST_VERSION', '1.0.0');
-define('ST_DB_VERSION', '1.0.0');
+define('WPQ_FILE', __FILE__);
+define('WPQ_DIR', __DIR__);
+define('WPQ_VERSION', '1.0.0');
+define('WPQ_DB_VERSION', '1.0.0');
 
-require_once ST_DIR.'/vendor/autoload.php';
+require_once WPQ_DIR.'/vendor/autoload.php';
 
 global $searchTerm;
-$searchTerm = new \SearchTerm\SearchTerm();
+$searchTerm = new \WPQuizz\WPQuizz();
 $searchTerm->run();

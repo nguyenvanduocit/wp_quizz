@@ -9,10 +9,8 @@
  * @author nguyenvanduocit
  */
 
-namespace SearchTerm;
-use SearchTerm\Admin\Admin;
-use SearchTerm\Admin\AdminPage;
-
+namespace WPQuizz;
+use WPQuizz\Admin\Admin;
 
 /**
  * Class Searchterm
@@ -22,7 +20,7 @@ use SearchTerm\Admin\AdminPage;
  * @since   1.0.0
  * @access (private, protected, or public)
  */
-class SearchTerm {
+class WPQuizz {
 	protected $moduleList;
 	protected $admin;
 	/**
@@ -30,7 +28,7 @@ class SearchTerm {
 	 */
 	public function __construct()
 	{
-		$this->moduleList = apply_filters('st_module_list', array(
+		$this->moduleList = apply_filters('wpq_module_list', array(
 			''
 		));
 	}
