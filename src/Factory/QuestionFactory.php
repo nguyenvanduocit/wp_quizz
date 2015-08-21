@@ -55,10 +55,9 @@ class QuestionFactory {
 	 */
 	public static function isExist( $question ) {
 		global $wpdb;
-		$query = $wpdb->prepare( "SELECT COUNT(1) FROM {$wpdb->posts} question WHERE question.post_type = %s AND question.post_title = %s",
+		$query = $wpdb->prepare( "SELECT COUNT(1) FROM {$wpdb->posts} question WHERE question.post_type = %s AND question.post_name = %s",
 		                         'question',
-		                         sanitize_title( $question->getSmartererId() ) );
-
+		                         md5($question->getQuestion()) );
 		return $wpdb->get_var( $query ) > 0;
 	}
 
@@ -234,7 +233,7 @@ class QuestionFactory {
 	 */
 	public static function searchByQuestion( $question ) {
 		global $wpdb;
-		$query = $wpdb->prepare("SELECT post.ID FROM {$wpdb->posts} post WHERE post.post_name = %s", md5($question));
+		$query = $wpdb->prepare("SELECT post.ID FROM {$wpdb->posts} post WHERE post.post_type = %s AND post.post_name = %s",'question', md5($question));
 		$postId = $wpdb->get_var($query);
 		if(!$postId){
 			return new \WP_Error('NOT_FOUND', 'This question is not exist');

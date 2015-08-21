@@ -30,7 +30,8 @@ class WPQuizz {
 	public function __construct()
 	{
 		$this->moduleList = apply_filters('wpq_module_list', array(
-			'\WPQuizz\Module\ChromeIntegration\ChromeIntegration'
+			'\WPQuizz\Module\ChromeIntegration\ChromeIntegration',
+			'\WPQuizz\Module\SlackBotIntegration\SlackBotIntegration'
 		));
 		$this->postTypeList = apply_filters('wpq_module_list', array(
 			'\WPQuizz\Posttype\Question\Question'
